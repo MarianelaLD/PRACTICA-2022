@@ -1,5 +1,5 @@
 Nombres: Marianela Lara Díaz y Nicolás Montaña.
 Docente: Rodolfo Canelón.
-Programas a utilizar: Vscode, Flask, Python
+Herramientas a utilizar: Vscode, Flask, Python
 Lenguajes: Python.
-Proyecto de privación de libertad de mujeres con web scraping y más.
+Proyecto para mujeres privadas de libertad con web scraping, crowdsourcing y plataforma de capacitación.
