@@ -1,13 +1,15 @@
 from bs4 import BeautifulSoup
 import requests
 from operator import itemgetter
-
+import datetime
 url = "https://www.gendarmeria.gob.cl/estadisticaspp.html"
 pagina = requests.get(url)
 pagina_soup = BeautifulSoup (pagina.content, 'html.parser')
 
 p = pagina_soup.findAll('p')
 tablas = pagina_soup.findAll('table')
+
+ultima_actualizacion = datetime.datetime.now()
 datos = []
 nombres = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 meses_dict = []
@@ -22,7 +24,7 @@ for i in p:
         if 'Estadística' in j.text:
             subsistema = j.text.split(' ')[-1]
             for tabla in tablas:
-                año = tabla.find('td').text.split(' ')[-1]
+                año = int(tabla.find('td').text.split(' ')[-1])
                 a = tabla.findAll('a')
                 for h in a:
                     link = h.get('href')
@@ -31,5 +33,3 @@ for i in p:
                     mydict = {'link': link, 'subsistema': subsistema, 'mes': mes, 'año': año}
                     datos.append(mydict)
 datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
-
-
