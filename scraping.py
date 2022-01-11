@@ -4,6 +4,7 @@ from pandas import DataFrame, read_csv, options
 from os import mkdir, path
 from datetime import datetime
 from time import sleep
+from operator import itemgetter
 
 url = "https://www.gendarmeria.gob.cl/estadisticaspp.html"
 pagina = requests.get(url)
@@ -16,7 +17,7 @@ nombres = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agos
 meses_dict = []
 pos = 1
 for i in nombres:
-    meses_dict.append({i:pos})
+    meses_dict.append({'mes':pos, 'nombre':i})
     pos+=1
 
 for i in p:
@@ -30,8 +31,9 @@ for i in p:
                 for h in a:
                     link = h.get('href')
                     mes = h.text
-                    mes = [i for i in meses_dict if mes in i][0]
+                    mes = [i for i in meses_dict if mes in i['nombre']][0].get('mes')
                     mydict = {'link': link, 'subsistema': subsistema, 'mes': mes, 'año': año}
                     datos.append(mydict)
-datos.sort(key=lambda k : k['año'])
-print(datos[0])
+datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
+print(datos)
+
