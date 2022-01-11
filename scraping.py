@@ -1,9 +1,5 @@
 from bs4 import BeautifulSoup
 import requests
-from pandas import DataFrame, read_csv, options
-from os import mkdir, path
-from datetime import datetime
-from time import sleep
 from operator import itemgetter
 
 url = "https://www.gendarmeria.gob.cl/estadisticaspp.html"
@@ -24,7 +20,7 @@ for i in p:
     a = i.findAll('a')
     for j in a:
         if 'Estadística' in j.text:
-            subsistema = j.text[2:].split(' ')[-1]
+            subsistema = j.text.split(' ')[-1]
             for tabla in tablas:
                 año = tabla.find('td').text.split(' ')[-1]
                 a = tabla.findAll('a')
@@ -35,5 +31,5 @@ for i in p:
                     mydict = {'link': link, 'subsistema': subsistema, 'mes': mes, 'año': año}
                     datos.append(mydict)
 datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
-print(datos)
+
 
