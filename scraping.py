@@ -19,7 +19,7 @@ for i in range(1,13):
     meses_dict.append(mes)
 
 for parrafo in parrafos:
-    anclas = parrafo.findAll('anclas')
+    anclas = parrafo.findAll('a')
     for ancla in anclas:
         if 'Estadística' in ancla.text:
             subsistema = ancla.text.split(' ')[-1]
@@ -32,5 +32,5 @@ for parrafo in parrafos:
                     mes = [i for i in meses_dict if mes in i['nombre']][0].get('numero')
                     mydict = {'link': link, 'subsistema': subsistema, 'mes': mes, 'año': año}
                     datos.append(mydict)
-
+datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
 print(datos)
