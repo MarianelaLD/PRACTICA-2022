@@ -6,7 +6,7 @@ import requests
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-http = urllib3.PoolManager(cert_reqs = 'CERT_NONE')
+
 url = "https://www.gendarmeria.gob.cl/estadisticaspp.html"
 pagina = requests.get(url)
 pagina_soup = BeautifulSoup (pagina.content, 'html.parser')
@@ -37,6 +37,7 @@ for tabla in tablas:
 datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
 worksheets = []
 for dato in datos:
+    http = urllib3.PoolManager(cert_reqs = 'CERT_NONE')
     excel_request = http.request('GET', dato.get('link')).data
     try:
         worksheets = pd.ExcelFile(excel_request)    
