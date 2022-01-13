@@ -4,14 +4,12 @@ import datetime
 import pandas as pd
 import requests
 import urllib3
-
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 url = "https://www.gendarmeria.gob.cl/estadisticaspp.html"
 pagina = requests.get(url)
 pagina_soup = BeautifulSoup (pagina.content, 'html.parser')
 tablas = pagina_soup.findAll('table')
-ultima_actualizacion = datetime.datetime.now()
 datos = []
 nombres = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 meses_dict = []
@@ -19,7 +17,6 @@ meses_dict = []
 for i in range(1,13):
     mes = {'numero':i, 'nombre':nombres[i-1]}
     meses_dict.append(mes)
-aux = {}
 
 for tabla in tablas:
     año = int(tabla.find('td').text.split(' ')[-1])
@@ -36,16 +33,16 @@ for tabla in tablas:
 
 datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
 worksheets = []
+
 for dato in datos:
     http = urllib3.PoolManager(cert_reqs = 'CERT_NONE')
-    excel_request = http.request('GET', dato.get('link')).data
-    try:
-        worksheets = pd.ExcelFile(excel_request)    
-        worksheets = worksheets.sheet_names
-        print(worksheets)
-    except:
-        print('No se pudo abrir el archivo')
-        continue
+    excel_request = http.request('GET', dato.get('link'))
+    
+    if excel_request.status != 200:
+        print(dato['link'])
+    
+    else:
+        worksheets = pd.ExcelFile(excel_request.data).sheet_names
 
     '''
     for worksheet in worksheets:
