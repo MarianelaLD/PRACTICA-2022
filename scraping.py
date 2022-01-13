@@ -33,4 +33,8 @@ for parrafo in parrafos:
                     mydict = {'link': link, 'subsistema': subsistema, 'mes': mes, 'año': año}
                     datos.append(mydict)
 datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
-print(datos)
+a_limpiar = []
+for dato in datos:
+    df = pd.read_excel(dato['link'])[0]
+    print(df)
+  
