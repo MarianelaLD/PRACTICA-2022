@@ -34,7 +34,15 @@ for parrafo in parrafos:
                     datos.append(mydict)
 datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
 a_limpiar = []
-for dato in datos:
-    df = pd.read_excel(dato['link'])[0]
+link = datos[0]['link']
+link = link[:4] + link[5:]
+print(link)
+
+try :
+    excel = requests.get(link, verify=False)
+    df = pd.read_excel(io=excel, sheet_name='Hoja1')
     print(df)
+except:
+    print('No se pudo descargar el excel')
+
   
