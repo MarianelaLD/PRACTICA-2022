@@ -55,7 +55,7 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <layout class="QFormLayout" name="formLayout">
@@ -1070,6 +1070,9 @@ background-color: rgb(172, 128, 160);</string>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QWidget" name="widget_4" native="true">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(170, 0, 0);</string>
+              </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
                 <widget class="QLabel" name="label_28">
@@ -1112,6 +1115,9 @@ background-color: rgb(172, 128, 160);</string>
             </item>
             <item>
              <widget class="QWidget" name="widget_5" native="true">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(170, 0, 0);</string>
+              </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
                 <widget class="QLabel" name="label_29">
@@ -1149,6 +1155,9 @@ background-color: rgb(172, 128, 160);</string>
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(170, 0, 0);</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
@@ -1213,6 +1222,9 @@ background-color: rgb(172, 128, 160);</string>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(170, 0, 0);</string>
+           </property>
            <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
              <widget class="QLabel" name="label_31">
@@ -1250,6 +1262,9 @@ background-color: rgb(172, 128, 160);</string>
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(170, 0, 0);</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
@@ -1293,6 +1308,9 @@ background-color: rgb(172, 128, 160);</string>
             </item>
             <item>
              <widget class="QWidget" name="widget_9" native="true">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(170, 0, 0);</string>
+              </property>
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
                 <widget class="QLabel" name="label_33">
