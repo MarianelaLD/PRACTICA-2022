@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
-import requests
 from operator import itemgetter
 import datetime
 import pandas as pd
+import requests
 
 url = "https://www.gendarmeria.gob.cl/estadisticaspp.html"
 pagina = requests.get(url)
@@ -36,13 +36,16 @@ datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
 a_limpiar = []
 link = datos[0]['link']
 link = link[:4] + link[5:]
-print(link)
+archivo = link.split('/')[-1]
+
+
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+http = urllib3.PoolManager(cert_reqs = 'CERT_NONE')
+excel = http.request('GET', link)
 
 try :
-    excel = requests.get(link, verify=False)
-    df = pd.read_excel(io=excel, sheet_name='Hoja1')
+    df = pd.read_excel(excel.text)
     print(df)
 except:
     print('No se pudo descargar el excel')
-
-  
