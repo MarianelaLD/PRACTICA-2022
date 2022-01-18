@@ -12,8 +12,8 @@ CREATE TABLE public.informante (
     rut_informante  NOT NULL,
     nombre_informante  NOT NULL,
     apellido_informante  NOT NULL,
-    id_verificacion  NOT NULL,
-    PRIMARY KEY (rut_informante, id_verificacion)
+    id_verificacion  UNIQUE NOT NULL,
+    PRIMARY KEY (rut_informante)
 );
 
 
