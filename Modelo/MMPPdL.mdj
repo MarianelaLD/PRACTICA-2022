@@ -567,7 +567,7 @@
 									},
 									"font": "Arial;13;1",
 									"left": 8,
-									"top": 157,
+									"top": 149,
 									"width": 131.87353515625,
 									"height": 13,
 									"text": "CALLE"
@@ -593,7 +593,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 13,
-											"top": 180,
+											"top": 172,
 											"width": 121.87353515625,
 											"height": 13
 										},
@@ -608,21 +608,21 @@
 											},
 											"font": "Arial;13;0",
 											"left": 13,
-											"top": 195,
+											"top": 187,
 											"width": 121.87353515625,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 8,
-									"top": 175,
+									"top": 167,
 									"width": 131.87353515625,
 									"height": 38
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 8,
-							"top": 152,
+							"top": 144,
 							"width": 131.87353515625,
 							"height": 61,
 							"autoResize": true,
@@ -1706,7 +1706,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 134,
-									"top": 267,
+									"top": 263,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1723,7 +1723,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 135,
-									"top": 231,
+									"top": 223,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 30,
@@ -1757,7 +1757,7 @@
 								"$ref": "AAAAAAF+T+nmyFHpqK4="
 							},
 							"lineStyle": 2,
-							"points": "120:212;120:336",
+							"points": "120:204;120:336",
 							"nameLabel": {
 								"$ref": "AAAAAAF+bZ9ICp+s+c8="
 							},
@@ -2322,10 +2322,10 @@
 							},
 							"font": "Arial;13;0",
 							"left": 1720,
-							"top": 568,
+							"top": 672,
 							"width": 180.4052734375,
 							"height": 55,
-							"text": "consultarDatos()\neditarDatos()\neliminarCuenta()"
+							"text": "editarDatos()\neliminarCuenta()"
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -2341,7 +2341,7 @@
 								"$ref": "AAAAAAF+T/BMLFLZQGQ="
 							},
 							"lineStyle": 1,
-							"points": "1607:684;1745:623"
+							"points": "1607:707;1719:702"
 						},
 						{
 							"_type": "ERDRelationshipView",
@@ -2703,7 +2703,7 @@
 									"font": "Arial;13;1",
 									"left": 472,
 									"top": 773,
-									"width": 85.61181640625,
+									"width": 102.96630859375,
 									"height": 13,
 									"text": "CUIDADOR"
 								},
@@ -2736,14 +2736,14 @@
 									"font": "Arial;13;0",
 									"left": 472,
 									"top": 791,
-									"width": 85.61181640625,
+									"width": 102.96630859375,
 									"height": 23
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 472,
 							"top": 768,
-							"width": 85.61181640625,
+							"width": 102.96630859375,
 							"height": 46,
 							"nameLabel": {
 								"$ref": "AAAAAAF+bc6Wb6InaJU="
@@ -2840,8 +2840,8 @@
 								"$ref": "AAAAAAFLzntJC6ElOqo="
 							},
 							"font": "Arial;13;0",
-							"left": 1328,
-							"top": 904,
+							"left": 480,
+							"top": 416,
 							"width": 70,
 							"height": 51,
 							"text": "Evaluar agregar persona"
@@ -4394,6 +4394,33 @@
 									"$ref": "AAAAAAF+dDH+UaJL6tQ="
 								}
 							}
+						},
+						{
+							"_type": "ERDRelationship",
+							"_id": "AAAAAAF+dGpAe6Pk7aQ=",
+							"_parent": {
+								"$ref": "AAAAAAF+T+rj9lJEgpU="
+							},
+							"end1": {
+								"_type": "ERDRelationshipEnd",
+								"_id": "AAAAAAF+dGpAe6PlORI=",
+								"_parent": {
+									"$ref": "AAAAAAF+dGpAe6Pk7aQ="
+								},
+								"reference": {
+									"$ref": "AAAAAAF+T+rj9lJEgpU="
+								}
+							},
+							"end2": {
+								"_type": "ERDRelationshipEnd",
+								"_id": "AAAAAAF+dGpAe6PmB08=",
+								"_parent": {
+									"$ref": "AAAAAAF+dGpAe6Pk7aQ="
+								},
+								"reference": {
+									"$ref": "AAAAAAF+bcLzlqGZMlE="
+								}
+							}
 						}
 					],
 					"columns": [
@@ -4516,7 +4543,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF+T+/7XlLH+/A="
 							},
-							"name": "idVerificador",
+							"name": "rutVerificador",
 							"length": 0
 						},
 						{
@@ -4525,7 +4552,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF+T+/7XlLH+/A="
 							},
-							"name": "idVerificado",
+							"name": "rutVerificado",
 							"length": 0
 						}
 					]
