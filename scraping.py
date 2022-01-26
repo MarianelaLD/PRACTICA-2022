@@ -32,6 +32,7 @@ for tabla in tablas:
             
 
 datos = sorted(datos, key=itemgetter('subsistema','año','mes'))
+
 worksheets = []
 
 for dato in datos:
@@ -42,38 +43,43 @@ for dato in datos:
         print(dato['link'])
     
     else:
-        worksheets = pd.ExcelFile(excel_request.data).sheet_names
+        excel_df = pd.ExcelFile(excel_request.data)
+        worksheets = excel_df.sheet_names
+    
+        for worksheet in worksheets:
 
-    '''
-    for worksheet in worksheets:
-        if dato.get('subsistema') == 'cerrado':
+            if dato.get('subsistema') == 'cerrado':
+                
+                if worksheet == 'Pobl. penal atendida':
+                    
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet, header=13)
+                    excel_hoja.drop(excel_hoja.columns[[0,2,]], axis=1, inplace=True)
+                    excel_hoja.drop(excel_hoja.index[[-3,-2,-1]], inplace=True)
+                    print(excel_hoja)
+                    print(dato.get('año'), dato.get('mes'))
+                """
+                elif worksheet == 'Pobl. recluida por Establ.':
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
+                
+                elif worksheet == 'Establ. Tradic. VS Conces.':
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
+                    
+                elif worksheet == 'Pobl. ingresada por Establ.':
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
+                    
+                elif worksheet == 'Pobl. egresada por Establ.':
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
+                    
+                elif worksheet == 'Pobl. con Lib. Condicional':
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
+                    
+                elif worksheet == 'Pobl. con nivel inserc. prolon.':
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
+            """                   
             
-            if worksheet == 'Pobl. penal atendida':
-                excel_df = pd.read_excel(excel_request, sheet_name=worksheet, header=13)
-                excel_df.drop(excel_df.columns[[0,2,]], axis=1, inplace=True)
-                excel_df.drop(excel_df.index[[-3,-2,-1]], inplace=True)
-            
-            elif worksheet == 'Pobl. recluida por Establ.':
-                excel_df = pd.read_excel(excel_request, sheet_name=worksheet)
-            
-            elif worksheet == 'Establ. Tradic. VS Conces.':
-                excel_df = pd.read_excel(excel_request, sheet_name=worksheet)
+            elif dato.get('subsistema') == 'abierto':
+                print(worksheet)
                 
-            elif worksheet == 'Pobl. ingresada por Establ.':
-                excel_df = pd.read_excel(excel_request, sheet_name=worksheet)
-                
-            elif worksheet == 'Pobl. egresada por Establ.':
-                excel_df = pd.read_excel(excel_request, sheet_name=worksheet)
-                
-            elif worksheet == 'Pobl. con Lib. Condicional':
-                excel_df = pd.read_excel(excel_request, sheet_name=worksheet)
-                
-            elif worksheet == 'Pobl. con nivel inserc. prolon.':
-                excel_df = pd.read_excel(excel_request, sheet_name=worksheet)
-                
-        
-        elif dato.get('subsistema') == 'abierto':
-            continue
-        
-        elif dato.get('subsistema') == 'postpenitenciario':
-            continue'''
+          
+            elif dato.get('subsistema') == 'postpenitenciario':
+                print(worksheet)
