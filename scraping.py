@@ -5,9 +5,28 @@ import pandas as pd
 import requests
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+url = 'https://www.gendarmeria.gob.cl/'
 
-url = "https://www.gendarmeria.gob.cl/estadisticaspp.html"
-pagina = requests.get(url)
+url_establecimientos = f'{url}establecimientos_penales.html'
+pagina_establecimientos = requests.get(url_establecimientos)
+pagina_establecimientos_soup = BeautifulSoup(pagina_establecimientos.content, 'html.parser')
+tabla_establecimientos_soup = pagina_establecimientos_soup.find('table')
+tabla_establecimientos_soup_filas = tabla_establecimientos_soup.find_all('tr')
+tabla = []
+for tr in tabla_establecimientos_soup_filas:
+    td = tr.find_all('td')
+    fila = [i.text.strip() for i in td if i.text.strip()]
+    if fila:
+        tabla.append(fila)
+
+df_direcciones_estableciemientos = pd.DataFrame(tabla[2::], columns=tabla[1])
+
+print (pd.io.sql.get_schema(df_direcciones_estableciemientos.reset_index(), 'data'))
+        
+
+"""
+url_estadisticas = f'{url}estadisticaspp.html'
+pagina = requests.get(url_estadisticas)
 pagina_soup = BeautifulSoup (pagina.content, 'html.parser')
 tablas = pagina_soup.findAll('table')
 datos = []
@@ -57,9 +76,12 @@ for dato in datos:
                     excel_hoja.drop(excel_hoja.index[[-3,-2,-1]], inplace=True)
                     print(excel_hoja)
                     print(dato.get('año'), dato.get('mes'))
-                """
-                elif worksheet == 'Pobl. recluida por Establ.':
-                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
+                
+                if worksheet == 'Pobl. recluida por Establ.':
+                    excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet, header=5)
+                    print(excel_hoja)
+                    excel_hoja.to_csv('./poblacion_recluida_por_establecimiento.csv')
+                    
                 
                 elif worksheet == 'Establ. Tradic. VS Conces.':
                     excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
@@ -75,7 +97,7 @@ for dato in datos:
                     
                 elif worksheet == 'Pobl. con nivel inserc. prolon.':
                     excel_hoja = pd.read_excel(excel_df, sheet_name=worksheet)
-            """                   
+                             
             
             elif dato.get('subsistema') == 'abierto':
                 print(worksheet)
@@ -83,3 +105,5 @@ for dato in datos:
           
             elif dato.get('subsistema') == 'postpenitenciario':
                 print(worksheet)
+            
+"""
