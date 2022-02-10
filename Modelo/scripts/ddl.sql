@@ -8,31 +8,44 @@
 --SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_--ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema CSPrivadasLibertad
+-- DATABASE CSPrivadasLibertad
 -- -----------------------------------------------------
 
+-- Database: CSPrivadasLibertad
+/*
+DROP DATABASE IF EXISTS "CSPrivadasLibertad";
+
+CREATE DATABASE "CSPrivadasLibertad"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;*/
+	
 -- -----------------------------------------------------
--- Schema CSPrivadasLibertad
+-- Schema "crowdsourcing"
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS "CSPrivadasLibertad"; --DEFAULT CHARACTER SET utf8 ;
---USE "CSPrivadasLibertad" ;
+CREATE SCHEMA IF NOT EXISTS "crowdsourcing";
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."REGION"
+-- Table "crowdsourcing"."REGION"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."REGION";
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."REGION" (
+--DROP TABLE IF EXISTS "crowdsourcing"."REGION";
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."REGION" (
   "idREGION" INT NOT NULL,
   "nombreRegion" VARCHAR(45) NULL,
   PRIMARY KEY ("idREGION"))
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."COMUNA"
+-- Table "crowdsourcing"."COMUNA"
 -- -----------------------------------------------------
---DROP TABLE "CSPrivadasLibertad"."COMUNA"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."COMUNA" (
+--DROP TABLE "crowdsourcing"."COMUNA"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."COMUNA" (
   "idCOMUNA" INT NOT NULL,
   "REGION_idREGION" INT NOT NULL,
   "nombreComuna" VARCHAR(45) NULL,
@@ -40,17 +53,18 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."COMUNA" (
   --INDEX "fk_COMUNA_REGION_idx" ("REGION_idREGION" ASC) VISIBLE,
   CONSTRAINT "fk_COMUNA_REGION"
     FOREIGN KEY ("REGION_idREGION")
-    REFERENCES "CSPrivadasLibertad"."REGION" ("idREGION")
+    REFERENCES "crowdsourcing"."REGION" ("idREGION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."CALLE"
+-- Table "crowdsourcing"."CALLE"
 -- -----------------------------------------------------
---DROP TABLE "CSPrivadasLibertad"."CALLE"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CALLE" (
+--DROP TABLE "crowdsourcing"."CALLE"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."CALLE" (
   "idCALLE" INT NOT NULL,
   "REGION_idREGION" INT NOT NULL,
   "COMUNA_idCOMUNA" INT NOT NULL,
@@ -60,22 +74,23 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CALLE" (
   --INDEX "fk_CALLE_COMUNA1_idx" ("COMUNA_idCOMUNA" ASC) VISIBLE,
   CONSTRAINT "fk_CALLE_REGION1"
     FOREIGN KEY ("REGION_idREGION")
-    REFERENCES "CSPrivadasLibertad"."REGION" ("idREGION")
+    REFERENCES "crowdsourcing"."REGION" ("idREGION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_CALLE_COMUNA1"
     FOREIGN KEY ("COMUNA_idCOMUNA")
-    REFERENCES "CSPrivadasLibertad"."COMUNA" ("idCOMUNA")
+    REFERENCES "crowdsourcing"."COMUNA" ("idCOMUNA")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."DIRECCION"
+-- Table "crowdsourcing"."DIRECCION"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."DIRECCION"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."DIRECCION" (
+--DROP TABLE IF EXISTS "crowdsourcing"."DIRECCION"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."DIRECCION" (
   "idDIRECCION" INT NOT NULL,
   "CALLE_idCALLE" INT NOT NULL,
   "REGION_idREGION" INT NOT NULL,
@@ -87,27 +102,28 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."DIRECCION" (
   --INDEX "fk_DIRECCION_COMUNA1_idx" ("COMUNA_idCOMUNA" ASC) VISIBLE,
   CONSTRAINT "fk_DIRECCION_CALLE1"
     FOREIGN KEY ("CALLE_idCALLE")
-    REFERENCES "CSPrivadasLibertad"."CALLE" ("idCALLE")
+    REFERENCES "crowdsourcing"."CALLE" ("idCALLE")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_DIRECCION_REGION1"
     FOREIGN KEY ("REGION_idREGION")
-    REFERENCES "CSPrivadasLibertad"."REGION" ("idREGION")
+    REFERENCES "crowdsourcing"."REGION" ("idREGION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_DIRECCION_COMUNA1"
     FOREIGN KEY ("COMUNA_idCOMUNA")
-    REFERENCES "CSPrivadasLibertad"."COMUNA" ("idCOMUNA")
+    REFERENCES "crowdsourcing"."COMUNA" ("idCOMUNA")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."PERSONA"
+-- Table "crowdsourcing"."PERSONA"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."PERSONA"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."PERSONA" (
+--DROP TABLE IF EXISTS "crowdsourcing"."PERSONA"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."PERSONA" (
   "rut" INT NOT NULL,
   "DIRECCION_idDIRECCION" INT NOT NULL,
   "nombrePersona" VARCHAR(45) NULL,
@@ -116,17 +132,18 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."PERSONA" (
   --INDEX "fk_PERSONA_DIRECCION1_idx" ("DIRECCION_idDIRECCION" ASC) VISIBLE,
   CONSTRAINT "fk_PERSONA_DIRECCION1"
     FOREIGN KEY ("DIRECCION_idDIRECCION")
-    REFERENCES "CSPrivadasLibertad"."DIRECCION" ("idDIRECCION")
+    REFERENCES "crowdsourcing"."DIRECCION" ("idDIRECCION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."USUARIO"
+-- Table "crowdsourcing"."USUARIO"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."USUARIO"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."USUARIO" (
+--DROP TABLE IF EXISTS "crowdsourcing"."USUARIO"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."USUARIO" (
   "PERSONA_rut" INT NOT NULL,
   "contraseña" VARCHAR(45) NOT NULL,
   "fechaRegistro" DATE DEFAULT CURRENT_DATE,
@@ -139,33 +156,35 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."USUARIO" (
   --UNIQUE INDEX "nombreUsuario_UNIQUE" ("nombreUsuario" ASC) VISIBLE,
   CONSTRAINT "fk_USUARIO_PERSONA1"
     FOREIGN KEY ("PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."PERSONA" ("rut")
+    REFERENCES "crowdsourcing"."PERSONA" ("rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."ADMIN"
+-- Table "crowdsourcing"."ADMIN"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."ADMIN"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."ADMIN" (
+--DROP TABLE IF EXISTS "crowdsourcing"."ADMIN"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."ADMIN" (
   "USUARIO_PERSONA_rut" INT NOT NULL,
   PRIMARY KEY ("USUARIO_PERSONA_rut"),
   CONSTRAINT "fk_ADMIN_USUARIO1"
     FOREIGN KEY ("USUARIO_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."USUARIO" ("PERSONA_rut")
+    REFERENCES "crowdsourcing"."USUARIO" ("PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."INSTITUCION"
+-- Table "crowdsourcing"."INSTITUCION"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."INSTITUCION"
-DROP TABLE "CSPrivadasLibertad"."INSTITUCION"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INSTITUCION" (
+--DROP TABLE IF EXISTS "crowdsourcing"."INSTITUCION"
+--DROP TABLE "crowdsourcing"."INSTITUCION"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."INSTITUCION" (
   "idINSTITUCION" INT NOT NULL,
   "DIRECCION_idDIRECCION" INT NOT NULL,
   "nombreInstitucion" VARCHAR(45) NULL,
@@ -174,17 +193,18 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INSTITUCION" (
   --INDEX "fk_INSTITUCION_DIRECCION1_idx" ("DIRECCION_idDIRECCION" ASC) VISIBLE,
   CONSTRAINT "fk_INSTITUCION_DIRECCION1"
     FOREIGN KEY ("DIRECCION_idDIRECCION")
-    REFERENCES "CSPrivadasLibertad"."DIRECCION" ("idDIRECCION")
+    REFERENCES "crowdsourcing"."DIRECCION" ("idDIRECCION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."VERIFICACION"
+-- Table "crowdsourcing"."VERIFICACION"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."VERIFICACION"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICACION" (
+--DROP TABLE IF EXISTS "crowdsourcing"."VERIFICACION"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."VERIFICACION" (
   "idVERIFICACION" INT NOT NULL,
   "ADMIN_USUARIO_PERSONA_rut" INT NOT NULL,
   "fechaEmision" DATE DEFAULT CURRENT_DATE,
@@ -193,17 +213,18 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICACION" (
   --INDEX "fk_VERIFICACION_ADMIN1_idx" ("ADMIN_USUARIO_PERSONA_rut" ASC) VISIBLE,
   CONSTRAINT "fk_VERIFICACION_ADMIN1"
     FOREIGN KEY ("ADMIN_USUARIO_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."ADMIN" ("USUARIO_PERSONA_rut")
+    REFERENCES "crowdsourcing"."ADMIN" ("USUARIO_PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."VERIFICADOR"
+-- Table "crowdsourcing"."VERIFICADOR"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."VERIFICADOR"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICADOR" (
+--DROP TABLE IF EXISTS "crowdsourcing"."VERIFICADOR"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."VERIFICADOR" (
   "USUARIO_PERSONA_rut" INT NOT NULL,
   "INSTITUCION_idINSTITUCION" INT NOT NULL,
   "VERIFICACION_idVERIFICACION" INT NOT NULL,
@@ -212,27 +233,28 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICADOR" (
   --INDEX "fk_VERIFICADOR_VERIFICACION1_idx" ("VERIFICACION_idVERIFICACION" ASC) VISIBLE,
   CONSTRAINT "fk_VERIFICADOR_USUARIO1"
     FOREIGN KEY ("USUARIO_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."USUARIO" ("PERSONA_rut")
+    REFERENCES "crowdsourcing"."USUARIO" ("PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_VERIFICADOR_INSTITUCION1"
     FOREIGN KEY ("INSTITUCION_idINSTITUCION")
-    REFERENCES "CSPrivadasLibertad"."INSTITUCION" ("idINSTITUCION")
+    REFERENCES "crowdsourcing"."INSTITUCION" ("idINSTITUCION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_VERIFICADOR_VERIFICACION1"
     FOREIGN KEY ("VERIFICACION_idVERIFICACION")
-    REFERENCES "CSPrivadasLibertad"."VERIFICACION" ("idVERIFICACION")
+    REFERENCES "crowdsourcing"."VERIFICACION" ("idVERIFICACION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."INFORMANTE"
+-- Table "crowdsourcing"."INFORMANTE"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."INFORMANTE"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INFORMANTE" (
+--DROP TABLE IF EXISTS "crowdsourcing"."INFORMANTE"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."INFORMANTE" (
   "USUARIO_PERSONA_rut" INT NOT NULL,
   "VERIFICACION_idVERIFICACION" INT NOT NULL,
   "nivelEducacionalInformante" VARCHAR(45) NULL,
@@ -242,39 +264,41 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INFORMANTE" (
   --INDEX "fk_INFORMANTE_VERIFICACION1_idx" ("VERIFICACION_idVERIFICACION" ASC) VISIBLE,
   CONSTRAINT "fk_INFORMANTE_USUARIO1"
     FOREIGN KEY ("USUARIO_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."USUARIO" ("PERSONA_rut")
+    REFERENCES "crowdsourcing"."USUARIO" ("PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_INFORMANTE_VERIFICACION1"
     FOREIGN KEY ("VERIFICACION_idVERIFICACION")
-    REFERENCES "CSPrivadasLibertad"."VERIFICACION" ("idVERIFICACION")
+    REFERENCES "crowdsourcing"."VERIFICACION" ("idVERIFICACION")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."CUSTODIA"
+-- Table "crowdsourcing"."CUSTODIA"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."CUSTODIA"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CUSTODIA" (
+--DROP TABLE IF EXISTS "crowdsourcing"."CUSTODIA"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."CUSTODIA" (
   "PERSONA_rut" INT NOT NULL,
   "relacionCarga" VARCHAR(45) NULL,
   "relacionInformante" VARCHAR(45) NULL,
   PRIMARY KEY ("PERSONA_rut"),
   CONSTRAINT "fk_CUSTODIA_PERSONA1"
     FOREIGN KEY ("PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."PERSONA" ("rut")
+    REFERENCES "crowdsourcing"."PERSONA" ("rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."CARGA"
+-- Table "crowdsourcing"."CARGA"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."CARGA"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CARGA" (
+--DROP TABLE IF EXISTS "crowdsourcing"."CARGA"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."CARGA" (
   "PERSONA_rut" INT NOT NULL,
   "CUSTODIA_PERSONA_rut" INT NOT NULL,
   "INFORMANTE_USUARIO_PERSONA_rut" INT NOT NULL,
@@ -286,27 +310,28 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CARGA" (
   --INDEX "fk_CARGA_INFORMANTE1_idx" ("INFORMANTE_USUARIO_PERSONA_rut" ASC) VISIBLE,
   CONSTRAINT "fk_CARGA_PERSONA1"
     FOREIGN KEY ("PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."PERSONA" ("rut")
+    REFERENCES "crowdsourcing"."PERSONA" ("rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_CARGA_CUSTODIA1"
     FOREIGN KEY ("CUSTODIA_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."CUSTODIA" ("PERSONA_rut")
+    REFERENCES "crowdsourcing"."CUSTODIA" ("PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_CARGA_INFORMANTE1"
     FOREIGN KEY ("INFORMANTE_USUARIO_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."INFORMANTE" ("USUARIO_PERSONA_rut")
+    REFERENCES "crowdsourcing"."INFORMANTE" ("USUARIO_PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."CONDENA"
+-- Table "crowdsourcing"."CONDENA"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."CONDENA"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CONDENA" (
+--DROP TABLE IF EXISTS "crowdsourcing"."CONDENA"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."CONDENA" (
   "idCONDENA" INT NOT NULL,
   "INFORMANTE_USUARIO_PERSONA_rut" INT NOT NULL,
   "fechaInicio" DATE NULL,
@@ -315,17 +340,18 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CONDENA" (
   --INDEX "fk_CONDENA_INFORMANTE1_idx" ("INFORMANTE_USUARIO_PERSONA_rut" ASC) VISIBLE,
   CONSTRAINT "fk_CONDENA_INFORMANTE1"
     FOREIGN KEY ("INFORMANTE_USUARIO_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."INFORMANTE" ("USUARIO_PERSONA_rut")
+    REFERENCES "crowdsourcing"."INFORMANTE" ("USUARIO_PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."MOTIVO"
+-- Table "crowdsourcing"."MOTIVO"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."MOTIVO"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."MOTIVO" (
+--DROP TABLE IF EXISTS "crowdsourcing"."MOTIVO"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."MOTIVO" (
   "idMOTIVO" INT NOT NULL,
   "CONDENA_idCONDENA" INT NOT NULL,
   "CONDENA_INFORMANTE_USUARIO_PERSONA_rut" INT NOT NULL,
@@ -334,17 +360,18 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."MOTIVO" (
   --INDEX "fk_MOTIVO_CONDENA1_idx" ("CONDENA_idCONDENA" ASC, "CONDENA_INFORMANTE_USUARIO_PERSONA_rut" ASC) VISIBLE,
   CONSTRAINT "fk_MOTIVO_CONDENA1"
     FOREIGN KEY ("CONDENA_idCONDENA")
-    REFERENCES "CSPrivadasLibertad"."CONDENA" ("idCONDENA")
+    REFERENCES "crowdsourcing"."CONDENA" ("idCONDENA")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."LOGIN"
+-- Table "crowdsourcing"."LOGIN"
 -- -----------------------------------------------------
---DROP TABLE IF EXISTS "CSPrivadasLibertad"."LOGIN"
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."LOGIN" (
+--DROP TABLE IF EXISTS "crowdsourcing"."LOGIN"
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."LOGIN" (
   "idLOGIN" INT NOT NULL,
   "USUARIO_PERSONA_rut" INT NOT NULL,
   "nombreUsuarioLogin" VARCHAR(45) NULL,
@@ -354,10 +381,11 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."LOGIN" (
   --INDEX "fk_LOGIN_USUARIO1_idx" ("USUARIO_PERSONA_rut" ASC) VISIBLE,
   CONSTRAINT "fk_LOGIN_USUARIO1"
     FOREIGN KEY ("USUARIO_PERSONA_rut")
-    REFERENCES "CSPrivadasLibertad"."USUARIO" ("PERSONA_rut")
+    REFERENCES "crowdsourcing"."USUARIO" ("PERSONA_rut")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 --------------------------------------------------------
 --------------------------------------------------------
 -- -----------------------------------------------------
@@ -365,9 +393,9 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."LOGIN" (
 -- -----------------------------------------------------
 --------------------------------------------------------
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."cerrado"
+-- Table "crowdsourcing"."cerrado"
 -- -----------------------------------------------------
-/*REATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."cerrado" (
+/*REATE TABLE IF NOT EXISTS "crowdsourcing"."cerrado" (
   "cerrado_idcerrado" INT NOT NULL,
   "condenados_24hrs" INT NULL,
   "condenados_falta" INT NULL,
@@ -377,28 +405,30 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."LOGIN" (
   PRIMARY KEY ("cerrado_idcerrado"),
   CONSTRAINT "fk_cerrado_cerrado1"
     FOREIGN KEY ("cerrado_idcerrado")
-    REFERENCES "CSPrivadasLibertad"."cerrado" ("idcerrado")
+    REFERENCES "crowdsourcing"."cerrado" ("idcerrado")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."postpenitenciario"
+-- Table "crowdsourcing"."postpenitenciario"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."postpenitenciario" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."postpenitenciario" (
   "idpostpenitenciario" INT NOT NULL,
   "control_dl409" VARCHAR(45) NULL,
   "indulto_conmutativo" VARCHAR(45) NULL,
   "oficina_diagnostico_prontuarial" VARCHAR(45) NULL,
   PRIMARY KEY ("idpostpenitenciario"))
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."abierto"
+-- Table "crowdsourcing"."abierto"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."abierto" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."abierto" (
   "cerrado_idcerrado" INT NOT NULL,
   "condenados_arresto_diurno" INT NULL,
   "condenados_arresto_nocturno" INT NULL,
@@ -408,16 +438,17 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."abierto" (
   PRIMARY KEY ("cerrado_idcerrado"),
   CONSTRAINT "fk_abierto_cerrado1"
     FOREIGN KEY ("cerrado_idcerrado")
-    REFERENCES "CSPrivadasLibertad"."cerrado" ("idcerrado")
+    REFERENCES "crowdsourcing"."cerrado" ("idcerrado")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."subsistemas"
+-- Table "crowdsourcing"."subsistemas"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."subsistemas" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."subsistemas" (
   "idsubsistemas" INT NOT NULL,
   "cerrado_idcerrado" INT NOT NULL,
   "postpenitenciario_idpostpenitenciario" INT NOT NULL,
@@ -429,26 +460,27 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."subsistemas" (
   --INDEX "fk_subsistemas_abierto1_idx" ("abierto_idabierto" ASC) VISIBLE,
   CONSTRAINT "fk_subsistemas_cerrado1"
     FOREIGN KEY ("cerrado_idcerrado")
-    REFERENCES "CSPrivadasLibertad"."cerrado" ("idcerrado")
+    REFERENCES "crowdsourcing"."cerrado" ("idcerrado")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_subsistemas_postpenitenciario1"
     FOREIGN KEY ("postpenitenciario_idpostpenitenciario")
-    REFERENCES "CSPrivadasLibertad"."postpenitenciario" ("idpostpenitenciario")
+    REFERENCES "crowdsourcing"."postpenitenciario" ("idpostpenitenciario")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_subsistemas_abierto1"
     FOREIGN KEY ("abierto_idabierto")
-    REFERENCES "CSPrivadasLibertad"."abierto" ("idabierto")
+    REFERENCES "crowdsourcing"."abierto" ("idabierto")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."metodos_alternativos"
+-- Table "crowdsourcing"."metodos_alternativos"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."metodos_alternativos" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."metodos_alternativos" (
   "abierto_idabierto" INT NOT NULL,
   "remision_condicional_pena" INT NULL,
   "libertad_vigilada_adulto" INT NULL,
@@ -463,16 +495,17 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."metodos_alternativos" (
   PRIMARY KEY ("abierto_idabierto"),
   CONSTRAINT "fk_metodos_alternativos_abierto1"
     FOREIGN KEY ("abierto_idabierto")
-    REFERENCES "CSPrivadasLibertad"."abierto" ("idabierto")
+    REFERENCES "crowdsourcing"."abierto" ("idabierto")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."cerrado"
+-- Table "crowdsourcing"."cerrado"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."cerrado" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."cerrado" (
   "cerrado_idcerrado" INT NOT NULL,
   "condenados_24hrs" INT NULL,
   "condenados_falta" INT NULL,
@@ -482,31 +515,33 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."cerrado" (
   PRIMARY KEY ("cerrado_idcerrado"),
   CONSTRAINT "fk_cerrado_cerrado1"
     FOREIGN KEY ("cerrado_idcerrado")
-    REFERENCES "CSPrivadasLibertad"."cerrado" ("idcerrado")
+    REFERENCES "crowdsourcing"."cerrado" ("idcerrado")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."semiabierto"
+-- Table "crowdsourcing"."semiabierto"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."semiabierto" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."semiabierto" (
   "cerrado_idcerrado" INT NOT NULL,
   "condenados_cet_semiabierto" INT NULL,
   PRIMARY KEY ("cerrado_idcerrado"),
   CONSTRAINT "fk_semiabierto_cerrado1"
     FOREIGN KEY ("cerrado_idcerrado")
-    REFERENCES "CSPrivadasLibertad"."cerrado" ("idcerrado")
+    REFERENCES "crowdsourcing"."cerrado" ("idcerrado")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."penas_sustitutivas"
+-- Table "crowdsourcing"."penas_sustitutivas"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."penas_sustitutivas" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."penas_sustitutivas" (
   "abierto_idabierto" INT NOT NULL,
   "domiciliaria_1_2_3_11_primero" INT NULL,
   "domiciliaria_11_segundo" INT NULL,
@@ -515,16 +550,17 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."penas_sustitutivas" (
   PRIMARY KEY ("abierto_idabierto"),
   CONSTRAINT "fk_metodos_alternativos_abierto2"
     FOREIGN KEY ("abierto_idabierto")
-    REFERENCES "CSPrivadasLibertad"."abierto" ("idabierto")
+    REFERENCES "crowdsourcing"."abierto" ("idabierto")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 
 
 -- -----------------------------------------------------
--- Table "CSPrivadasLibertad"."abierto"
+-- Table "crowdsourcing"."abierto"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."abierto" (
+CREATE TABLE IF NOT EXISTS "crowdsourcing"."abierto" (
   "cerrado_idcerrado" INT NOT NULL,
   "condenados_arresto_diurno" INT NULL,
   "condenados_arresto_nocturno" INT NULL,
@@ -534,10 +570,11 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."abierto" (
   PRIMARY KEY ("cerrado_idcerrado"),
   CONSTRAINT "fk_abierto_cerrado1"
     FOREIGN KEY ("cerrado_idcerrado")
-    REFERENCES "CSPrivadasLibertad"."cerrado" ("idcerrado")
+    REFERENCES "crowdsourcing"."cerrado" ("idcerrado")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
---ENGINE = InnoDB;
+--ENGINE = InnoDB
+;
 */
 
 --SET SQL_MODE=@OLD_SQL_MODE;
