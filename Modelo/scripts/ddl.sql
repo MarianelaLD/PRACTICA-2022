@@ -8,14 +8,12 @@
 --SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_--ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- DATABASE CSPrivadasLibertad
+-- DATABASE PrivadasLibertad
 -- -----------------------------------------------------
-
--- Database: CSPrivadasLibertad
 /*
-DROP DATABASE IF EXISTS "CSPrivadasLibertad";
+DROP DATABASE IF EXISTS "PrivadasLibertad";
 
-CREATE DATABASE "CSPrivadasLibertad"
+CREATE DATABASE "PrivadasLibertad"
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
