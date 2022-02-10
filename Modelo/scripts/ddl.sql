@@ -20,6 +20,7 @@ CREATE SCHEMA IF NOT EXISTS "CSPrivadasLibertad"; --DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."REGION"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."REGION";
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."REGION" (
   "idREGION" INT NOT NULL,
   "nombreRegion" VARCHAR(45) NULL,
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."REGION" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."COMUNA"
 -- -----------------------------------------------------
-DROP TABLE "CSPrivadasLibertad"."COMUNA"
+--DROP TABLE "CSPrivadasLibertad"."COMUNA"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."COMUNA" (
   "idCOMUNA" INT NOT NULL,
   "REGION_idREGION" INT NOT NULL,
@@ -48,6 +49,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."COMUNA" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."CALLE"
 -- -----------------------------------------------------
+--DROP TABLE "CSPrivadasLibertad"."CALLE"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CALLE" (
   "idCALLE" INT NOT NULL,
   "REGION_idREGION" INT NOT NULL,
@@ -72,6 +74,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CALLE" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."DIRECCION"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."DIRECCION"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."DIRECCION" (
   "idDIRECCION" INT NOT NULL,
   "CALLE_idCALLE" INT NOT NULL,
@@ -103,6 +106,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."DIRECCION" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."PERSONA"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."PERSONA"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."PERSONA" (
   "rut" INT NOT NULL,
   "DIRECCION_idDIRECCION" INT NOT NULL,
@@ -121,6 +125,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."PERSONA" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."USUARIO"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."USUARIO"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."USUARIO" (
   "PERSONA_rut" INT NOT NULL,
   "contraseña" VARCHAR(45) NOT NULL,
@@ -143,6 +148,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."USUARIO" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."ADMIN"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."ADMIN"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."ADMIN" (
   "USUARIO_PERSONA_rut" INT NOT NULL,
   PRIMARY KEY ("USUARIO_PERSONA_rut"),
@@ -157,6 +163,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."ADMIN" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."INSTITUCION"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."INSTITUCION"
 DROP TABLE "CSPrivadasLibertad"."INSTITUCION"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INSTITUCION" (
   "idINSTITUCION" INT NOT NULL,
@@ -176,6 +183,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INSTITUCION" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."VERIFICACION"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."VERIFICACION"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICACION" (
   "idVERIFICACION" INT NOT NULL,
   "ADMIN_USUARIO_PERSONA_rut" INT NOT NULL,
@@ -194,6 +202,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICACION" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."VERIFICADOR"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."VERIFICADOR"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICADOR" (
   "USUARIO_PERSONA_rut" INT NOT NULL,
   "INSTITUCION_idINSTITUCION" INT NOT NULL,
@@ -222,6 +231,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."VERIFICADOR" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."INFORMANTE"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."INFORMANTE"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INFORMANTE" (
   "USUARIO_PERSONA_rut" INT NOT NULL,
   "VERIFICACION_idVERIFICACION" INT NOT NULL,
@@ -246,6 +256,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."INFORMANTE" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."CUSTODIA"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."CUSTODIA"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CUSTODIA" (
   "PERSONA_rut" INT NOT NULL,
   "relacionCarga" VARCHAR(45) NULL,
@@ -262,6 +273,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CUSTODIA" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."CARGA"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."CARGA"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CARGA" (
   "PERSONA_rut" INT NOT NULL,
   "CUSTODIA_PERSONA_rut" INT NOT NULL,
@@ -293,6 +305,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CARGA" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."CONDENA"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."CONDENA"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CONDENA" (
   "idCONDENA" INT NOT NULL,
   "INFORMANTE_USUARIO_PERSONA_rut" INT NOT NULL,
@@ -311,6 +324,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."CONDENA" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."MOTIVO"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."MOTIVO"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."MOTIVO" (
   "idMOTIVO" INT NOT NULL,
   "CONDENA_idCONDENA" INT NOT NULL,
@@ -329,6 +343,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."MOTIVO" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."LOGIN"
 -- -----------------------------------------------------
+--DROP TABLE IF EXISTS "CSPrivadasLibertad"."LOGIN"
 CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."LOGIN" (
   "idLOGIN" INT NOT NULL,
   "USUARIO_PERSONA_rut" INT NOT NULL,
@@ -352,7 +367,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."LOGIN" (
 -- -----------------------------------------------------
 -- Table "CSPrivadasLibertad"."cerrado"
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."cerrado" (
+/*REATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."cerrado" (
   "cerrado_idcerrado" INT NOT NULL,
   "condenados_24hrs" INT NULL,
   "condenados_falta" INT NULL,
@@ -523,7 +538,7 @@ CREATE TABLE IF NOT EXISTS "CSPrivadasLibertad"."abierto" (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 --ENGINE = InnoDB;
-
+*/
 
 --SET SQL_MODE=@OLD_SQL_MODE;
 --SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
