@@ -7,5 +7,18 @@
 			"path": "..\\..\\proyecto ene y michi\\Practicas"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"sqltools.connections": [
+			{
+				"previewLimit": 50,
+				"server": "localhost",
+				"port": 5432,
+				"driver": "PostgreSQL",
+				"name": "PrivadasLibertad",
+				"database": "PrivadasLibertad",
+				"username": "postgres",
+				"password": "rosita14"
+			}
+		]
+	}
 }
