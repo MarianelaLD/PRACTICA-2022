@@ -25,7 +25,7 @@ CREATE DATABASE PrivadasLibertad
 -- -----------------------------------------------------
 -- Schema crowdsourcing
 -- -----------------------------------------------------
-drop schema if exists crowdsourcing;
+--drop schema if exists crowdsourcing cascade;
 create schema if not exists crowdsourcing;
 -- -----------------------------------------------------
 -- table crowdsourcing.region
@@ -120,7 +120,7 @@ create table if not exists crowdsourcing.direccion (
 -- -----------------------------------------------------
 -- table crowdsourcing.persona
 -- -----------------------------------------------------
---drop table if exists crowdsourcing.persona
+--drop table if exists crowdsourcing.persona cascade;
 create table if not exists crowdsourcing.persona (
   rut int not null,
   direccion_iddireccion int not null,
@@ -185,8 +185,8 @@ create table if not exists crowdsourcing.admin (
 create table if not exists crowdsourcing.institucion (
   idinstitucion int not null,
   direccion_iddireccion int not null,
-  nombreinstitucion varchar(45) null,
-  tipoinstitucion varchar(45) null,
+  nombreinstitucion varchar(45),
+  tipoinstitucion varchar(45),
   primary key (idinstitucion),
   --index fk_institucion_direccion1_idx (direccion_iddireccion asc) visible,
   constraint fk_institucion_direccion1
@@ -255,9 +255,9 @@ create table if not exists crowdsourcing.verificador (
 create table if not exists crowdsourcing.informante (
   usuario_persona_rut int not null,
   verificacion_idverificacion int not null,
-  niveleducacionalinformante varchar(45) null,
-  estadocivil varchar(45) null,
-  estadocausa varchar(45) null,
+  niveleducacionalinformante varchar(45),
+  estadocivil varchar(45),
+  estadocausa varchar(45),
   primary key (usuario_persona_rut),
   --index fk_informante_verificacion1_idx (verificacion_idverificacion asc) visible,
   constraint fk_informante_usuario1

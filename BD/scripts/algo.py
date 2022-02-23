@@ -1,3 +1,4 @@
+from multiprocessing import connection
 import psycopg2
 from bs4 import BeautifulSoup
 from operator import itemgetter
@@ -9,9 +10,6 @@ from random import randint
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 url = 'https://www.ide.cl/descargas/cut_2018_v04.xls'
-
-
-conn = psycopg2.connect(host="localhost", database="PrivadasLibertad", user="postgres", password="rosita14")
 
 def escribir_dml_personas():
     dml = open("BD\scripts\dml.sql", "a")
@@ -42,8 +40,25 @@ def escribir_dml_personas():
             
         nombre = nombre1 + ' ' + nombre2
         apellido = apellido1 + ' ' + apellido2
-        insert_str = f'INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)\nVALUES ({r}, 0, "{nombre}", "{apellido}");\n'
+        insert_str = f"INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)\nVALUES ({r}, 0, '{nombre}', '{apellido}');\n"
         dml.write(insert_str)
     dml.close
-
-escribir_dml_personas()
+def escribir_dml_informante():
+    connection = psycopg2.connect(host="localhost", database="PrivadasLibertad", user="postgres", password="rosita14")
+    c = connection.cursor()
+    c.execute("SELECT * FROM crowdsourcing.persona;")
+    personas = c.fetchall()
+    c.close()
+    connection.close()
+    dml = open("BD\scripts\dml.sql", "a")
+    tipo_usuario = 'informante'
+    
+    for persona in personas:
+       insert_str = f"INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)\nVALUES ({persona[0]}, '{str(randint(0,1000))+str(persona[3].replace(' ', ''))}', '{tipo_usuario}', '{str(randint(0,1000))+str(persona[2].replace(' ', ''))}');\n"
+       dml.write(insert_str)
+    dml.close
+def escribir_dml_verificador():
+    return
+#escribir_dml_personas()
+#escribir_dml_informante()
+escribir_dml_verificador()
