@@ -3,10 +3,10 @@ CREATE FUNCTION crowdsourcing.logear_usuario(_rut int, _contraseña text)
   LANGUAGE plpython3u
   AS $$
   BEGIN
-    usuario = plpy.prepare("SELECT * FROM crowdsourcing.USUARIO WHERE  = $1", ['rut']);
-    usuario = plpy.execute(usuario, [_rut]);
+    usuario_pre = plpy.prepare("SELECT * FROM crowdsourcing.USUARIO WHERE  = $1", ['rut']);
+    usuario = plpy.execute(usuario_pre, [_rut]);
     agregar_login = plpy.prepare('INSERT INTO crowdsourcing."LOGIN" (USUARIO_PERSONA_rut, contraseñaLogin, fechaLogin
-    VALUES ($1, $2, now());', [_rut, _contraseña]);
+    VALUES ($1, $2, now());', [_rut, _contraseña])
   END;
 $$
 SELECT * FROM crowdsourcing."USUARIO";

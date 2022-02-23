@@ -124,8 +124,8 @@ create table if not exists crowdsourcing.direccion (
 create table if not exists crowdsourcing.persona (
   rut int not null,
   direccion_iddireccion int not null,
-  nombrepersona varchar(45) null,
-  apellidopersona varchar(45) null,
+  nombrepersona varchar(45),
+  apellidopersona varchar(45),
   primary key (rut),
   --index fk_persona_direccion1_idx (direccion_iddireccion asc) visible,
   constraint fk_persona_direccion1
