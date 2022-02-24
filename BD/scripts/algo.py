@@ -73,7 +73,7 @@ def escribir_dml_informante():
         id_ver+= 1
         insert_verificacion_str = f"INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)\nVALUES ({id_ver},199167286, now(), false);\n"
         dml.write(insert_verificacion_str)
-        insert_informante_str = f"INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)\nVALUES ({usuario[0]},{id_ver},'{nivel_educativo[randint(0,len(nivel_educativo)-1)]}', '{estado_civil[randint(0, len(estado_civil)-1)]}', '{estado_causa[randint(0,len(estado_causa)-1)]}');\n"
+        insert_informante_str = f"INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)\nVALUES ({usuario[0]},{id_ver},'{nivel_educativo[randint(0,len(nivel_educativo)-1)]}', '{estado_civil[randint(0, len(estado_civil)-1)]}', '{estado_causa[randint(0,len(estado_causa)-1)]}');\n"
         dml.write(insert_informante_str)
     dml.close
 #escribir_dml_personas()

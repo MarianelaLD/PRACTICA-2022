@@ -280,8 +280,7 @@ create table if not exists crowdsourcing.informante (
 --drop table if exists crowdsourcing.custodia
 create table if not exists crowdsourcing.custodia (
   persona_rut int not null,
-  relacioncarga varchar(45) null,
-  relacioninformante varchar(45) null,
+  relacioninformante varchar(45),
   primary key (persona_rut),
   constraint fk_custodia_persona1
     foreign key (persona_rut)
@@ -291,7 +290,6 @@ create table if not exists crowdsourcing.custodia (
 --engine = innodb
 ;
 
-
 -- -----------------------------------------------------
 -- table crowdsourcing.carga
 -- -----------------------------------------------------
@@ -300,9 +298,9 @@ create table if not exists crowdsourcing.carga (
   persona_rut int not null,
   custodia_persona_rut int not null,
   informante_usuario_persona_rut int not null,
-  relacioninformantecarga varchar(45) null,
-  edad int null,
-  niveleducativo varchar(45) null,
+  relacioninformantecarga varchar(45),
+  edad int,
+  niveleducativo varchar(45),
   primary key (persona_rut),
   --index fk_carga_custodia1_idx (custodia_persona_rut asc) visible,
   --index fk_carga_informante1_idx (informante_usuario_persona_rut asc) visible,
@@ -353,7 +351,7 @@ create table if not exists crowdsourcing.motivo (
   idmotivo int not null,
   condena_idcondena int not null,
   condena_informante_usuario_persona_rut int not null,
-  descripciondelito varchar(45) null,
+  descripciondelito varchar(45),
   primary key (idmotivo),
   --index fk_motivo_condena1_idx (condena_idcondena asc, condena_informante_usuario_persona_rut asc) visible,
   constraint fk_motivo_condena1
@@ -372,8 +370,8 @@ create table if not exists crowdsourcing.motivo (
 create table if not exists crowdsourcing.login (
   idlogin int not null,
   usuario_persona_rut int not null,
-  nombreusuariologin varchar(45) null,
-  contraseñalogin varchar(45) null,
+  nombreusuariologin varchar(45),
+  contraseñalogin varchar(45),
   fechalogin timestamp default current_timestamp,
   primary key (idlogin),
   --index fk_login_usuario1_idx (usuario_persona_rut asc) visible,

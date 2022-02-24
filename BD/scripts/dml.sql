@@ -87,41 +87,146 @@ INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombre
 VALUES (126838018, '221GarciaReyes', 'informante', '838DanielaPaula');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (1,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (187543010,1,'Postgrado Incompleta', 'Soltera', 'En curso');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (187543010,1,'Tecnico Incompleta', 'Viuda', 'En curso');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (2,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (98784217,2,'Basica', 'Viuda', 'Finalizado');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (98784217,2,'Postgrado', 'Soltera', 'En curso');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (3,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (152172516,3,'Media Incompleta', 'Casada', 'Finalizado');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (152172516,3,'Media', 'Casada', 'Finalizado');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (4,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (91863529,4,'Basica Incompleta', 'Soltera', 'En curso');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (91863529,4,'Media Incompleta', 'Casada', 'En curso');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (5,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (140348619,5,'Tecnico', 'Divorciada', 'En curso');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (140348619,5,'Postgrado Incompleta', 'Soltera', 'Finalizado');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (6,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (216922174,6,'Basica', 'Union Civil', 'En curso');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (216922174,6,'Tecnico', 'Divorciada', 'Finalizado');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (7,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (76234159,7,'Basica Incompleta', 'Union Civil', 'En curso');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (76234159,7,'Universitario Incompleta', 'Viuda', 'En curso');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (8,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (130583210,8,'Tecnico Incompleta', 'Soltera', 'Finalizado');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (130583210,8,'Media', 'Casada', 'Finalizado');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (9,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (70338327,9,'Tecnico Incompleta', 'Union Civil', 'En curso');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (70338327,9,'Media Incompleta', 'Divorciada', 'En curso');
 INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
 VALUES (10,199167286, now(), false);
-INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
-VALUES (126838018,10,'Media', 'Casada', 'Finalizado');
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducacionalinformante, estadocivil, estadocausa)
+VALUES (126838018,10,'Basica Incompleta', 'Union Civil', 'Finalizado');
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--custodia
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+--custodia y carga 
+--------------------------------------------------------------------------------
+--1
+---custodia
+INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona) 
+VALUES (137331527, 0, 'Juan Alberto', 'Perez Moya');
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante) 
+VALUES (137331527, 'Pareja');
+---carga
+INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES (137543010, 0, 'Sandra', 'Gonzalez Santa Cruz');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES (137543010, 76234159 ,137331527, 'Hijo', '12', 'Basica Incompleta');
+--2
+---custodia
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona) 
+VALUES (115275747, 0, 'Maria Elena', 'Ugarte Muñoz');
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante) 
+VALUES (115275747, 'Abuela');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES (160971355, 0, 'Ramiro', 'Ramirez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES (160971355, 216922174, 115275747, 'Hijo', '16', 'Basica Incompleta');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES (226132406, 0, 'Ramira', 'Ramirez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES (226132406, 216922174, 115275747, 'Hijo', '13', 'Basica Incompleta');
+--3
+---custodia
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona) 
+VALUES (81049408, 0, 'Daniela', 'Garcia Reyes');
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante) 
+VALUES (81049408, 'Madre');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES (249685372, 0, 'Muriel', 'Ahumada Garcia');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES (249685372, 91863529, 81049408, 'Hijo', '4', 'Preescolar');
+--4
+---custodia
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante) 
+VALUES (126838018, 'Misma Persona');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES (243476577, 0, 'Maria', 'Gonzalez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES (243476577, 126838018, 126838018, 'Madre', '89', 'Basica Incompleta');
+--5
+---custodia
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(116778483, 0, 'Saul', 'Caro');
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante)
+VALUES(116778483, 'Pareja');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(239418384, 0, 'Mario', 'Gonzalez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES(239418384, 70338327, 116778483, 'Hijo', '9', 'Basica Incompleta');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(244776477, 0, 'Jordan', 'Gonzalez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES(244776477, 70338327, 116778483, 'Hijo', '7', 'Basica Incompleta');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(249424889, 0, 'Miriam', 'Gonzalez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES(249424889, 70338327, 116778483, 'Hijo', '2', 'Preescolar');
+--6
+---custodia
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(153709157, 0, 'Merida', 'Alcazar');
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante)
+VALUES(153709157, 'Pareja');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(210616306, 0, 'Miriam', 'Gonzalez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES(210616306, 140348619, 153709157, 'Hijo', '21', 'Media Incompleta');
+--7
+---custodia
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante)
+VALUES(187543010, 'Misma Persona');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(249258318, 0, 'Maria', 'Gonzalez');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES(249258318, 187543010, 187543010, 'Hijo', '9', 'Basica Incompleta');
+--8
+---custodia
+INSERT INTO crowdsourcing.custodia(persona_rut, relacioninformante)
+VALUES(130583210, 'Misma Persona');
+---carga
+INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES(230037884, 0, 'Celeste', 'Maldonado');
+INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
+VALUES(230037884, 130583210, 130583210, 'Hijo', '9', 'Basica Incompleta');
