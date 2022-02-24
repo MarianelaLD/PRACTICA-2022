@@ -7,6 +7,41 @@ INSERT INTO crowdsourcing.comuna(idcomuna, nombreComuna, region_idregion) VALUES
 INSERT INTO crowdsourcing.calle(idcalle, nombreCalle, comuna_idcomuna, region_idregion) VALUES (0, ' Sin Calle', 0,0);
 INSERT INTO crowdsourcing.direccion(iddireccion, calle_idcalle, numero, comuna_idcomuna, region_idregion) VALUES (0, 0, 0, 0, 0);
 
+
+--------------------------------------------------------------------------------
+-- admin
+--------------------------------------------------------------------------------
+INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES (199167286, 0, 'Admi', 'Nistrador');
+INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
+VALUES (199167286, 'admin', 'admin', 'Administrador');
+INSERT INTO crowdsourcing.admin(usuario_persona_rut) VALUES (199167286);
+
+
+--------------------------------------------------------------------------------
+-- institucion
+--------------------------------------------------------------------------------
+INSERT INTO crowdsourcing.institucion (idinstitucion, direccion_iddireccion, nombreinstitucion, tipoinstitucion)
+VALUES (0, 0, 'Institucion', 'ONG');
+
+
+--------------------------------------------------------------------------------
+-- verificacion
+--------------------------------------------------------------------------------
+INSERT INTO crowdsourcing.verificacion (idverificacion, admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (0, 199167286, '2022-01-01', true);
+
+
+--------------------------------------------------------------------------------
+-- verificador
+--------------------------------------------------------------------------------
+INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
+VALUES (200226780, 0, 'Veri', 'Ficador');
+INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
+VALUES (200226780, 'verificador', 'verificador', 'Verificador');
+INSERT INTO crowdsourcing.verificador(usuario_persona_rut, institucion_idinstitucion, verificacion_idverificacion) VALUES (200226780,0,0);
+
+
 --------------------------------------------------------------------------------
 -- informantes
 --------------------------------------------------------------------------------
@@ -51,31 +86,3 @@ VALUES (70338327, '700BaezaLopez', 'informante', '736RosaPaula');
 INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
 VALUES (126838018, '221GarciaReyes', 'informante', '838DanielaPaula');
 
-
---------------------------------------------------------------------------------
--- admin
---------------------------------------------------------------------------------
-INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
-VALUES (199167286, 0, 'Admi', 'Nistrador');
-INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
-VALUES (199167286, 'admin', 'admin', 'Administrador');
-INSERT INTO crowdsourcing.admin(usuario_persona_rut) VALUES (199167286);
-
-
---------------------------------------------------------------------------------
--- institucion
---------------------------------------------------------------------------------
-INSERT INTO crowdsourcing.institucion (idinstitucion, direccion_iddireccion, nombreinstitucion, tipoinstitucion)
-values (0, 0, 'Institucion', 'ONG');
-
-
---------------------------------------------------------------------------------
--- verificacion
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
--- verificador
---------------------------------------------------------------------------------
-INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
-VALUES (200226780, 0, 'Veri', 'Ficador');
-INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
-VALUES (200226780, 'verificador', 'verificador', 'Verificador');
