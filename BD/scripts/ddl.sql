@@ -147,7 +147,7 @@ create table if not exists crowdsourcing.usuario (
   fecharegistro date default current_date,
   ultimoinicio timestamp default current_date,
   sesioniniciada bool default false,
-  tipousuario varchar(10) not null,
+  tipousuario varchar(11) not null,
   nombreusuario varchar(45) unique not null,
   estaeliminado bool  default false,
   primary key (persona_rut),

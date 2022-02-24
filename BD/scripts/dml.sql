@@ -85,4 +85,43 @@ INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombre
 VALUES (70338327, '700BaezaLopez', 'informante', '736RosaPaula');
 INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
 VALUES (126838018, '221GarciaReyes', 'informante', '838DanielaPaula');
-
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (1,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (187543010,1,'Postgrado Incompleta', 'Soltera', 'En curso');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (2,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (98784217,2,'Basica', 'Viuda', 'Finalizado');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (3,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (152172516,3,'Media Incompleta', 'Casada', 'Finalizado');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (4,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (91863529,4,'Basica Incompleta', 'Soltera', 'En curso');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (5,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (140348619,5,'Tecnico', 'Divorciada', 'En curso');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (6,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (216922174,6,'Basica', 'Union Civil', 'En curso');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (7,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (76234159,7,'Basica Incompleta', 'Union Civil', 'En curso');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (8,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (130583210,8,'Tecnico Incompleta', 'Soltera', 'Finalizado');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (9,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (70338327,9,'Tecnico Incompleta', 'Union Civil', 'En curso');
+INSERT INTO crowdsourcing.verificacion (idverificacion,admin_usuario_persona_rut, fechaemision, estadoverificacion)
+VALUES (10,199167286, now(), false);
+INSERT INTO crowdsourcing.informante (usuario_persona_rut,verificacion_idverificacion, niveleducativo, estadocivil, estadocausa)
+VALUES (126838018,10,'Media', 'Casada', 'Finalizado');
