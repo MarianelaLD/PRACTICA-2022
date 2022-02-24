@@ -49,7 +49,7 @@ CREATE FUNCTION crowdsourcing.logear_admin(_rut int, _contraseña text)
     INSERT INTO crowdsourcing."LOGIN" (USUARIO_PERSONA_rut, contraseñaLogin, fechaLogin) VALUES (_rut, $2, now());
   END;
 $$
-select * from crowdsourcing."PERSONA";
+
 create or replace function crowdsourcing.pddesc(_rut int, _contraseña text)
     returns table(rut int, nombre text, apellido text, fechaRegistro date, nombreUsuario text, tipoUsuario text)
     as $$
