@@ -330,8 +330,8 @@ create table if not exists crowdsourcing.carga (
 create table if not exists crowdsourcing.condena (
   idcondena int not null,
   informante_usuario_persona_rut int not null,
-  fechainicio date null,
-  duracion int null,
+  fechainicio date,
+  duracion int,
   primary key (idcondena),
   --index fk_condena_informante1_idx (informante_usuario_persona_rut asc) visible,
   constraint fk_condena_informante1
@@ -350,7 +350,6 @@ create table if not exists crowdsourcing.condena (
 create table if not exists crowdsourcing.motivo (
   idmotivo int not null,
   condena_idcondena int not null,
-  condena_informante_usuario_persona_rut int not null,
   descripciondelito varchar(45),
   primary key (idmotivo),
   --index fk_motivo_condena1_idx (condena_idcondena asc, condena_informante_usuario_persona_rut asc) visible,

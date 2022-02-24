@@ -230,3 +230,64 @@ INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, ape
 VALUES(230037884, 0, 'Celeste', 'Maldonado');
 INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
 VALUES(230037884, 130583210, 130583210, 'Hijo', '9', 'Basica Incompleta');
+
+
+------------------------------------------------------
+-- condena y motivo
+------------------------------------------------------
+--1
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion) 
+VALUES (1,187543010,'2018-12-26',5);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (1,1,'Robo');
+--2
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (2,98784217,'2020-01-17',6);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (2,2,'Delitos de la Ley de Drogas');
+--3
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (3,152172516,'2020-11-08',3);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (3,3,'Hurto');
+--4
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (4,91863529,'2019-05-25',4);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (4,4,'Robo');
+--5
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (5,140348619,'2018-03-28',6);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (5,5,'Robo');
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (13,5,'Desorden público');
+--6
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (6,216922174,'2019-08-24',8);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (6,6,'Homicidio');
+INSERT INTO crowdsourcing.motivo(idmotivo, condena_idcondena, descripciondelito)
+VALUES (11,6,'Robo');
+--7
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (7,76234159,'2021-11-11',2);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (7,7,'Robo');
+--8
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (8,130583210,'2021-07-02',2);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (8,8,'Delito de la Ley de Drogas');
+--9
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (9,70338327,'2019-07-02',7);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (9,9,'Homicidio');
+INSERT INTO crowdsourcing.motivo(idmotivo, condena_idcondena, descripciondelito)
+VALUES (12,9,'delito de la Ley de Drogas');
+--10
+INSERT INTO crowdsourcing.condena (idcondena, informante_usuario_persona_rut, fechainicio, duracion)
+VALUES (10,126838018,'2020-01-29',4);
+INSERT INTO crowdsourcing.motivo (idmotivo, condena_idcondena, descripciondelito)
+VALUES (10,10,'Robo');
