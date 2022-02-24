@@ -230,5 +230,3 @@ INSERT INTO crowdsourcing.persona(rut, direccion_iddireccion, nombrepersona, ape
 VALUES(230037884, 0, 'Celeste', 'Maldonado');
 INSERT INTO crowdsourcing.carga(persona_rut, informante_usuario_persona_rut,custodia_persona_rut,  relacioninformantecarga, edad, niveleducativo)
 VALUES(230037884, 130583210, 130583210, 'Hijo', '9', 'Basica Incompleta');
-
-select * from crowdsourcing.informante join crowdsourcing.usuario on informante.usuario_persona_rut = usuario.persona_rut;
