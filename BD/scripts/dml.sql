@@ -41,10 +41,10 @@ BEGIN
   EXCEPTION 
   WHEN unique_violation THEN
     _error := 'rut repetido';
-  WHEN string_data_right_truncation THEN
-    _error := 'nombre muy largo';
   WHEN check_violation THEN
     _error := 'rut invalido';
+  WHEN string_data_right_truncation THEN
+    _error := 'nombre muy largo';
   WHEN invalid_foreign_key THEN
    _error := 'direccion_inexistente';
   WHEN others THEN
@@ -54,37 +54,29 @@ END;
 $$ LANGUAGE plpgsql;
 
 select crowdsourcing.insert_persona('9.333.232-4', 'Verificador', 'Nistrador', 0);
-CREATE OR REPLACE FUNCTION crowdsourcing.insert_usuario(_rut INT, _nombre TEXT, _apellido TEXT, _direccion INT, _nombreusuario TEXT, _contraseña TEXT, OUT _unico BOOL, OUT _error TEXT)
+
+CREATE OR REPLACE FUNCTION crowdsourcing.insert_usuario(_rut INT, _nombre TEXT, _apellido TEXT, _direccion INT, _nombreusuario TEXT, _contraseña TEXT, _tipousuario TEXT, OUT _unico BOOL, OUT _error TEXT)
 AS $$
 DECLARE
+
   _error_persona TEXT;
-  _tipousuario TEXT := 'verificador';
+ 
 BEGIN
-  SELECT crowdsourcing.insert_persona(_rut, _nombre, _apellido, _direccion) INTO _error_persona;
+
+  SELECT * FROM crowdsourcing.insert_persona(_rut, _nombre, _apellido, _direccion) INTO _error_persona;
+  _error := _error_persona;
   CASE _error_persona
   WHEN 'Sin error' THEN
     INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
     VALUES (_rut, _contraseña, _tipousuario, _nombreusuario);
   WHEN 'rut' THEN
-    _error := 'rut';
-  WHEN 'muy largo' THEN
-    _error := 'muy largo';
-  WHEN 'otro' THEN
-    _error := 'otro';
-  END CASE;
-  IF _error_persona = 'Sin error' THEN
-    INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
-    VALUES (_rut, _contraseña, _tipousuario, _nombreusuario);
-      EXCEPTION 
-      WHEN unique_violation THEN
-      _error := 'nombre usuario';
-  ELI
-  ELSE
     _error := _error_persona;
-  END IF;
-  _error := 'Sin error';
+  WHEN 'muy largo' THEN
+    _error := _error_persona;
+  WHEN 'otro' THEN
+    _error := _error_persona;
+  END CASE;
 
-  
 END;
 $$ LANGUAGE plpgsql;
 
