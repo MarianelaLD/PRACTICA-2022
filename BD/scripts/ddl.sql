@@ -116,22 +116,7 @@ create table if not exists crowdsourcing.direccion (
 --engine = innodb
 ;
 
-CREATE OR REPLACE FUNCTION crowdsourcing.validarRut()
-RETURNS BOOL
-AS $$
-DECLARE
-  _aux VARCHAR(20) := '11.111.111-1';
-BEGIN
-if (_aux ~ '(\d{1,3}(?:(.?)\d{3}){2}(-?)[\dkK])')
-THEN
-RAISE NOTICE 'Rut valido';
-  RETURN TRUE;
-else
-RAISE NOTICE 'Rut invalido';
-  RETURN FALSE;
-END IF;
-END;
-$$ LANGUAGE plpgsql;
+
 -- -----------------------------------------------------
 -- table crowdsourcing.persona
 -- -----------------------------------------------------
