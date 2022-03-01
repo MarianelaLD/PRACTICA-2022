@@ -157,7 +157,7 @@ create table if not exists crowdsourcing.persona (
 -- -----------------------------------------------------
 --drop table if exists crowdsourcing.usuario
 create table if not exists crowdsourcing.usuario (
-  persona_rut int not null,
+  persona_rut varchar(20) not null,
   contraseña varchar(45) not null,
   fecharegistro date default current_date,
   ultimoinicio timestamp default current_date,
@@ -181,7 +181,7 @@ create table if not exists crowdsourcing.usuario (
 -- -----------------------------------------------------
 --drop table if exists crowdsourcing.admin
 create table if not exists crowdsourcing.admin (
-  usuario_persona_rut int not null,
+  usuario_persona_rut varchar(20) not null,
   primary key (usuario_persona_rut),
   constraint fk_admin_usuario1
     foreign key (usuario_persona_rut)
@@ -219,7 +219,7 @@ create table if not exists crowdsourcing.institucion (
 --drop table if exists crowdsourcing.verificacion;
 create table if not exists crowdsourcing.verificacion (
   idverificacion serial,
-  admin_usuario_persona_rut int not null,
+  admin_usuario_persona_rut varchar(20),
   fechaemision date default current_date,
   estadoverificacion bool default false,
   primary key (idverificacion),
@@ -238,7 +238,7 @@ create table if not exists crowdsourcing.verificacion (
 -- -----------------------------------------------------
 --drop table if exists crowdsourcing.verificador
 create table if not exists crowdsourcing.verificador (
-  usuario_persona_rut int not null,
+  usuario_persona_rut varchar(20) not null,
   institucion_idinstitucion int not null,
   verificacion_idverificacion int not null,
   primary key (usuario_persona_rut),
@@ -268,7 +268,7 @@ create table if not exists crowdsourcing.verificador (
 -- -----------------------------------------------------
 --drop table if exists crowdsourcing.informante
 create table if not exists crowdsourcing.informante (
-  usuario_persona_rut int not null,
+  usuario_persona_rut varchar(20) not null,
   verificacion_idverificacion int not null,
   niveleducacionalinformante varchar(45),
   estadocivil varchar(45),
@@ -294,7 +294,7 @@ create table if not exists crowdsourcing.informante (
 -- -----------------------------------------------------
 --drop table if exists crowdsourcing.custodia
 create table if not exists crowdsourcing.custodia (
-  persona_rut int not null,
+  persona_rut varchar(20) not null,
   relacioninformante varchar(45),
   primary key (persona_rut),
   constraint fk_custodia_persona1
@@ -310,9 +310,9 @@ create table if not exists crowdsourcing.custodia (
 -- -----------------------------------------------------
 --drop table if exists crowdsourcing.carga
 create table if not exists crowdsourcing.carga (
-  persona_rut int not null,
-  custodia_persona_rut int not null,
-  informante_usuario_persona_rut int not null,
+  persona_rut varchar(20) not null,
+  custodia_persona_rut varchar(20) not null,
+  informante_usuario_persona_rut varchar(20) not null,
   relacioninformantecarga varchar(45),
   edad int,
   niveleducativo varchar(45),
@@ -344,7 +344,7 @@ create table if not exists crowdsourcing.carga (
 --drop table if exists crowdsourcing.condena
 create table if not exists crowdsourcing.condena (
   idcondena int not null,
-  informante_usuario_persona_rut int not null,
+  informante_usuario_persona_rut varchar(20) not null,
   fechainicio date,
   duracion int,
   primary key (idcondena),
@@ -383,7 +383,7 @@ create table if not exists crowdsourcing.motivo (
 --drop table if exists crowdsourcing.login
 create table if not exists crowdsourcing.login (
   idlogin int not null,
-  usuario_persona_rut int not null,
+  usuario_persona_rut varchar(20) not null,
   nombreusuariologin varchar(45),
   contraseñalogin varchar(45),
   fechalogin timestamp default current_timestamp,

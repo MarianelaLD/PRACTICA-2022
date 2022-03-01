@@ -32,12 +32,13 @@ VALUES (0, 0, 'Institucion', 'ONG');
 -- verificador
 --------------------------------------------------------------------------------
 --1
-CREATE OR REPLACE FUNCTION crowdsourcing.insert_persona(_rut VARCHAR(14), _nombre TEXT, _apellido TEXT, _direccion INT, OUT _error TEXT)
+CREATE OR REPLACE FUNCTION crowdsourcing.insert_persona(_rut TEXT, _nombre TEXT, _apellido TEXT, _direccion INT, OUT _error TEXT)
 AS $$
 
 BEGIN
   INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
   VALUES (_rut, _direccion, _nombre, _apellido);
+  _error := 'sin errores';
   EXCEPTION 
   WHEN unique_violation THEN
     _error := 'rut repetido';
@@ -46,16 +47,16 @@ BEGIN
   WHEN string_data_right_truncation THEN
     _error := 'nombre muy largo';
   WHEN invalid_foreign_key THEN
-   _error := 'direccion_inexistente';
+   _error := 'direccion inexistente';
   WHEN others THEN
     _error := 'otro';
-  _error := 'sin errores';
+  
 END;
 $$ LANGUAGE plpgsql;
 
 select crowdsourcing.insert_persona('9.333.232-4', 'Verificador', 'Nistrador', 0);
 
-CREATE OR REPLACE FUNCTION crowdsourcing.insert_usuario(_rut INT, _nombre TEXT, _apellido TEXT, _direccion INT, _nombreusuario TEXT, _contraseña TEXT, _tipousuario TEXT, OUT _unico BOOL, OUT _error TEXT)
+CREATE OR REPLACE FUNCTION crowdsourcing.insert_usuario(_rut TEXT, _nombre TEXT, _apellido TEXT, _direccion INT, _nombreusuario TEXT, _contraseña TEXT, _tipousuario TEXT, OUT _unico BOOL, OUT _error TEXT)
 AS $$
 DECLARE
 
@@ -64,14 +65,19 @@ DECLARE
 BEGIN
 
   SELECT * FROM crowdsourcing.insert_persona(_rut, _nombre, _apellido, _direccion) INTO _error_persona;
+  raise NOTICE '%', _error_persona;
   _error := _error_persona;
   CASE _error_persona
-  WHEN 'Sin error' THEN
+  WHEN 'sin errores' THEN
     INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
     VALUES (_rut, _contraseña, _tipousuario, _nombreusuario);
-  WHEN 'rut' THEN
+  WHEN 'rut repetido' THEN
     _error := _error_persona;
-  WHEN 'muy largo' THEN
+  WHEN 'rut invalido' THEN
+    _error := _error_persona;
+  WHEN 'nombre muy largo' THEN
+    _error := _error_persona;
+  WHEN 'direccion inexistente' THEN
     _error := _error_persona;
   WHEN 'otro' THEN
     _error := _error_persona;
@@ -79,6 +85,8 @@ BEGIN
 
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT crowdsourcing.insert_usuario('19.916.728-6', 'Verificador', 'Nistrador', 0, 'verificador', 'verificador', 'verificador');
 
 
 CREATE OR REPLACE FUNCTION crowdsourcing.insert_verificador(_rut INT, _nombre VARCHAR(45), _apellido VARCHAR(45), _institucion INT, _contraseña VARCHAR(45), _direccion INT, _nombreusuario VARCHAR (45))
