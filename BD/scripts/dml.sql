@@ -32,16 +32,99 @@ VALUES (0, 0, 'Institucion', 'ONG');
 -- verificador
 --------------------------------------------------------------------------------
 --1
-INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
-VALUES (200226780, 0, 'Veri', 'Ficador');
-INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
-VALUES (200226780, 'verificador', 'verificador', 'Verificador');
-INSERT INTO crowdsourcing.verificacion (idverificacion, admin_usuario_persona_rut, fechaemision, estadoverificacion)
-VALUES (0, 199167286, '2022-01-01', true);
-INSERT INTO crowdsourcing.verificador(usuario_persona_rut, institucion_idinstitucion, verificacion_idverificacion) 
-VALUES (200226780,0,0);
+CREATE OR REPLACE FUNCTION crowdsourcing.insert_persona(_rut VARCHAR(14), _nombre TEXT, _apellido TEXT, _direccion INT, OUT _error TEXT)
+AS $$
+
+BEGIN
+  INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
+  VALUES (_rut, _direccion, _nombre, _apellido);
+  EXCEPTION 
+  WHEN unique_violation THEN
+    _error := 'rut repetido';
+  WHEN string_data_right_truncation THEN
+    _error := 'nombre muy largo';
+  WHEN check_violation THEN
+    _error := 'rut invalido';
+  WHEN invalid_foreign_key THEN
+   _error := 'direccion_inexistente';
+  WHEN others THEN
+    _error := 'otro';
+  _error := 'sin errores';
+END;
+$$ LANGUAGE plpgsql;
+
+select crowdsourcing.insert_persona('9.333.232-4', 'Verificador', 'Nistrador', 0);
+CREATE OR REPLACE FUNCTION crowdsourcing.insert_usuario(_rut INT, _nombre TEXT, _apellido TEXT, _direccion INT, _nombreusuario TEXT, _contraseña TEXT, OUT _unico BOOL, OUT _error TEXT)
+AS $$
+DECLARE
+  _error_persona TEXT;
+  _tipousuario TEXT := 'verificador';
+BEGIN
+  SELECT crowdsourcing.insert_persona(_rut, _nombre, _apellido, _direccion) INTO _error_persona;
+  CASE _error_persona
+  WHEN 'Sin error' THEN
+    INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
+    VALUES (_rut, _contraseña, _tipousuario, _nombreusuario);
+  WHEN 'rut' THEN
+    _error := 'rut';
+  WHEN 'muy largo' THEN
+    _error := 'muy largo';
+  WHEN 'otro' THEN
+    _error := 'otro';
+  END CASE;
+  IF _error_persona = 'Sin error' THEN
+    INSERT INTO crowdsourcing.usuario (persona_rut, contraseña, tipousuario, nombreusuario)
+    VALUES (_rut, _contraseña, _tipousuario, _nombreusuario);
+      EXCEPTION 
+      WHEN unique_violation THEN
+      _error := 'nombre usuario';
+  ELI
+  ELSE
+    _error := _error_persona;
+  END IF;
+  _error := 'Sin error';
+
+  
+END;
+$$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION crowdsourcing.insert_verificador(_rut INT, _nombre VARCHAR(45), _apellido VARCHAR(45), _institucion INT, _contraseña VARCHAR(45), _direccion INT, _nombreusuario VARCHAR (45))
+RETURNS BOOL , VARCHAR(20)
+AS $$
+
+DECLARE
+    _idverificacion INT;
+    _tipousuario VARCHAR(11) := 'verificador';
+BEGIN
+
+  BEGIN
+    INSERT INTO crowdsourcing.persona (rut, direccion_iddireccion, nombrepersona, apellidopersona)
+    VALUES (outerblock._rut, outerblock._direccion, outerblock._nombre, outerblock._apellido);
+    EXCEPTION 
+    WHEN unique_violation THEN
+      RETURN FALSE, 'rut';
+    WHEN sqlstate '22001' THEN
+      RETURN FALSE, 'muy largo';
+
+  END;
+  BEGIN
+
+  END;
+  INSERT INTO crowdsourcing.verificacion (admin_usuario_persona_rut, fechaemision)
+  VALUES (199167286, NOW())
+  RETURNING idverificacion INTO _idverificacion;
+  BEGIN
+    INSERT INTO crowdsourcing.verificador(usuario_persona_rut, institucion_idinstitucion, verificacion_idverificacion) 
+    VALUES (outerblock._rut,outerblock._institucion,outerblock._idverificacion);
+    EXCEPTION WHEN unique_violation THEN
+        RETURN FALSE, 'verificador';
+  END;
+  RETURN TRUE,'todo ok';
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT crowdsourcing.insert_verificador(98765421, 'Veri', 'Ficador', 0, 'contraseña', 0, 'verificador01');
 --------------------------------------------------------------------------------
 -- informantes
 --------------------------------------------------------------------------------

@@ -116,13 +116,28 @@ create table if not exists crowdsourcing.direccion (
 --engine = innodb
 ;
 
-
+CREATE OR REPLACE FUNCTION crowdsourcing.validarRut()
+RETURNS BOOL
+AS $$
+DECLARE
+  _aux VARCHAR(20) := '11.111.111-1';
+BEGIN
+if (_aux ~ '(\d{1,3}(?:(.?)\d{3}){2}(-?)[\dkK])')
+THEN
+RAISE NOTICE 'Rut valido';
+  RETURN TRUE;
+else
+RAISE NOTICE 'Rut invalido';
+  RETURN FALSE;
+END IF;
+END;
+$$ LANGUAGE plpgsql;
 -- -----------------------------------------------------
 -- table crowdsourcing.persona
 -- -----------------------------------------------------
 --drop table if exists crowdsourcing.persona cascade;
 create table if not exists crowdsourcing.persona (
-  rut int not null,
+  rut VARCHAR(14) check (rut ~ '(\d{1,3}(?:(.?)\d{3}){2}(-?)[\dkK])'),
   direccion_iddireccion int not null,
   nombrepersona varchar(45),
   apellidopersona varchar(45),
@@ -201,9 +216,9 @@ create table if not exists crowdsourcing.institucion (
 -- -----------------------------------------------------
 -- table crowdsourcing.verificacion
 -- -----------------------------------------------------
---drop table if exists crowdsourcing.verificacion
+--drop table if exists crowdsourcing.verificacion;
 create table if not exists crowdsourcing.verificacion (
-  idverificacion int not null,
+  idverificacion serial,
   admin_usuario_persona_rut int not null,
   fechaemision date default current_date,
   estadoverificacion bool default false,
